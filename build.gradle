@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'tenantMasterUtility'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '12.2.0.1';
+    compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.4.1.jre8'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from configurations.runtime
+}
+build.dependsOn copyToLib
+
